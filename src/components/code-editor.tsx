@@ -1,11 +1,11 @@
-import "./code-editor.css";
-import "./syntax.css";
-import MonacoEditor, { EditorDidMount } from "@monaco-editor/react";
-import prettier from "prettier";
-import parser from "prettier/parser-babel";
-import { useRef } from "react";
-import CodeShift from "jscodeshift";
-import Highlighter from "monaco-jsx-highlighter";
+import './code-editor.css';
+import './syntax.css';
+import MonacoEditor, { EditorDidMount } from '@monaco-editor/react';
+import prettier from 'prettier';
+import parser from 'prettier/parser-babel';
+import { useRef } from 'react';
+import CodeShift from 'jscodeshift';
+import Highlighter from 'monaco-jsx-highlighter';
 
 interface CodeEditorProps {
   initialValue: string;
@@ -38,20 +38,20 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
 
     const formatted = prettier
       .format(unFormatted, {
-        parser: "babel",
+        parser: 'babel',
         plugins: [parser],
         useTabs: false,
         semi: true,
         singleQuote: true,
       })
-      .replace(/\n$/, "");
+      .replace(/\n$/, '');
 
     editorRef.current.setValue(formatted);
   };
   return (
-    <div className="editor-wraper">
+    <div className='editor-wraper'>
       <button
-        className="button button-format is-primary is-small"
+        className='button button-format is-primary is-small'
         onClick={onFormatClick}
       >
         Format
@@ -60,7 +60,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
         value={initialValue}
         editorDidMount={OnEditorDidMount}
         options={{
-          wordWrap: "on",
+          wordWrap: 'on',
           minimap: { enabled: false },
           showUnused: false,
           folding: false,
@@ -69,9 +69,9 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
           scrollBeyondLastLine: false,
           automaticLayout: true,
         }}
-        theme="dark"
-        language="javascript"
-        height="500px"
+        theme='dark'
+        language='javascript'
+        height='100%'
       />
     </div>
   );
