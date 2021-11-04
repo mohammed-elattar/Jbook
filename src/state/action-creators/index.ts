@@ -1,10 +1,13 @@
+import { Dispatch } from "react";
+import bundle from "../../bundler";
 import { ActionType } from "../action-types";
 import {
   UpdateCellAction,
   MoveCellAction,
-  insertCellAfterAction,
+  InsertCellAfterAction,
   DeleteCellAction,
   Direction,
+  Action,
 } from "../actions";
 import { CellTypes } from "../cell";
 
@@ -29,7 +32,7 @@ export const moveCell = (id: string, direction: Direction): MoveCellAction => {
 export const insertCellAfter = (
   id: string | null,
   type: CellTypes
-): insertCellAfterAction => {
+): InsertCellAfterAction => {
   return {
     type: ActionType.INSERT_CELL_AFTER,
     payload: {
@@ -42,5 +45,29 @@ export const deleteCell = (id: string): DeleteCellAction => {
   return {
     type: ActionType.DELETE_CELL,
     payload: id,
+  };
+};
+
+export const createBundle = (cellId: string, input: string) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.BUNDLE_START,
+      payload: {
+        cellId: cellId,
+      },
+    });
+
+    const { error, code } = await bundle(input);
+
+    dispatch({
+      type: ActionType.BUNDLE_COMPLETE,
+      payload: {
+        cellId: cellId,
+        bundle: {
+          code,
+          error,
+        },
+      },
+    });
   };
 };

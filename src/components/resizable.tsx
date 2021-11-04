@@ -55,6 +55,3 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
 };
 
 export default Resizable;
-function listener(arg0: string, listener: any) {
-  throw new Error('Function not implemented.');
-}

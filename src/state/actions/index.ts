@@ -22,7 +22,7 @@ export interface UpdateCellAction {
   };
 }
 
-export interface insertCellAfterAction {
+export interface InsertCellAfterAction {
   type: ActionType.INSERT_CELL_AFTER;
   payload: {
     id: string | null;
@@ -30,8 +30,25 @@ export interface insertCellAfterAction {
   };
 }
 
+export interface BundleStartAction {
+  type: ActionType.BUNDLE_START;
+  payload: {
+    cellId: string;
+  };
+}
+
+export interface BundleCompleteAction {
+  type: ActionType.BUNDLE_COMPLETE;
+  payload: {
+    cellId: string;
+    bundle: { code: string; error: string };
+  };
+}
+
 export type Action =
   | MoveCellAction
   | DeleteCellAction
   | UpdateCellAction
-  | insertCellAfterAction;
+  | InsertCellAfterAction
+  | BundleStartAction
+  | BundleCompleteAction;
