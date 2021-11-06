@@ -4,6 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
+/packages/cli/node_modules
+/packages/local-api/node_modules
+/packages/local-client/node_modules
 
 # testing
 /coverage
